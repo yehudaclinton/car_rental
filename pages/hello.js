@@ -1,10 +1,20 @@
-let name = 'yehuda';
-function htm() {
-    return (
-        <div className="App">
-            <h1>Welcome to this car rental</h1>
-            <h2>select one of the following available cars</h2> <p>and inline variable {name}</p>
-        </div>
-    );
+//import React, {useState, useEffect} from "react"
+
+function Page({ data }) {
+  console.log("hello? "+JSON.stringify(data[1].car));
+  // Render data...
+  return ("hello "+data[1].car);
 }
-export default htm;
+
+// This gets called on every request
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`http://localhost:3000/cars`)
+  const data = await res.json()
+
+  // Pass data to the page via props
+  return { props: { data } }
+}
+
+export default Page
+

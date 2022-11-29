@@ -1,0 +1,7 @@
+<h2>i dont knwo if html is a thing here</h2>
+<br>
+<ul>
+  <% cars.forEach(function(car){ %>
+    <%- include('user/show', {car: car}); %>
+  <% }); %>
+</ul>

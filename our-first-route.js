@@ -3,6 +3,7 @@
  * @param {FastifyInstance} fastify encapsulated fastify instance
  * @param {Object} options plugin options, refer to https://www.fastify.io/docs/latest/Reference/Plugins/#plugin-options
  */
+ 
 async function routes (fastify, options) {
   const collection = fastify.mongo.db.collection('test_collection')
 
@@ -17,6 +18,7 @@ async function routes (fastify, options) {
     }
     return result
   })
+
 
   fastify.get('/cars/:car', async (request, reply) => {
     const result = await collection.findOne({ car: request.params.car })
