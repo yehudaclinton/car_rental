@@ -1,9 +1,34 @@
-//import React, {useState, useEffect} from "react"
-
 function Page({ data }) {
-  console.log("hello? "+JSON.stringify(data[1].car));
-  // Render data...
-  return ("hello "+data[1].car);
+console.log("hello? "+JSON.stringify(data[1].car));
+let name = 'yehuda';
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`The name you entered was: ${name}`)
+  }
+
+const form = (
+  
+  <div id='root'>
+    <h1>Welcome</h1>
+    <p>I am a paragraph.</p>
+
+    <form onSubmit={handleSubmit}>
+      <label>Enter your name:
+        <input 
+          type="text" 
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </label>
+      <input type="submit" />
+    </form>
+
+  </div>
+  
+  );
+  
+  return (form);
 }
 
 // This gets called on every request
