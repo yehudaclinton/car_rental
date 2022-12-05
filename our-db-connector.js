@@ -10,9 +10,14 @@ const fastifyPlugin = require('fastify-plugin')
  * @param {Object} options plugin options, refer to https://www.fastify.io/docs/latest/Reference/Plugins/#plugin-options
  */
 async function dbConnector (fastify, options) {
-  fastify.register(require('@fastify/mongodb'), {
-    url: 'mongodb://localhost:27017/car_rental'
-  })
+  try {
+    fastify.register(require('@fastify/mongodb'), {
+      url: 'mongodb://localhost:27017/car_rental'
+    })
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
 }
 
 // Wrapping a plugin function with fastify-plugin exposes the decorators
