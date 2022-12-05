@@ -22,3 +22,17 @@ with body:
         "toyota carolla"
     ]
 }
+
+## to reserve car:
+Post re to http://localhost:3000/reserve
+
+{
+    "car":"grey sedan",
+    "status":"unavailable"
+}
+
+## TODO
+
+implement
+hook
+map, reduce, and filter in my fastify project
