@@ -7,9 +7,6 @@ const fastify = require('fastify')({
 
 fastify.register(require('./our-db-connector'))
 fastify.register(require('./routes'))
-//fastify.register(require('@fastify/nextjs')).after(() => {
-//  fastify.next('/hello')
-//})
 
 fastify.listen({ port: 3000, host: '0.0.0.0' }, function (err, address) {
   if (err) {
@@ -19,3 +16,14 @@ fastify.listen({ port: 3000, host: '0.0.0.0' }, function (err, address) {
   // Server is now listening on ${address}
 })
 //start()
+
+
+fastify.addHook('onSend', async (request, reply, payload) => {
+  // log requests
+  const collection = fastify.mongo.db.collection('request_collection')
+
+  const result = collection.insertOne({ "unixtime": Date.now(), payload});
+
+  // return payload without modification
+  return payload
+})
