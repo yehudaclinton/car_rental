@@ -6,7 +6,7 @@ const fastify = require('fastify')({
 })
 
 fastify.register(require('./our-db-connector'))
-fastify.register(require('./our-first-route'))
+fastify.register(require('./routes'))
 //fastify.register(require('@fastify/nextjs')).after(() => {
 //  fastify.next('/hello')
 //})

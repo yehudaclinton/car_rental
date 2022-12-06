@@ -80,14 +80,14 @@ async function routes (fastify, options) {
     },
   }
   const gschema = {
-    body: getAvailableCars,
+    params: getAvailableCars,
   }
-
-  fastify.get('/search', { gschema }, async (request, reply) => {
+//{ gschema },
+  fastify.get('/search', async (request, reply) => {
     // get all
     const allcars = await collection.find().toArray()
-
-    const result = allcars.filter(car => car.status === 'unavailable');
+    console.log(request.params);
+    const result = allcars.filter(car => car.status == request.availability);
 
     return result
   })

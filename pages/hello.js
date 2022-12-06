@@ -36,7 +36,6 @@ function Page({ data }) {
         <ul>
           {
             data.map(function (cars) {
-              // returns Nathan, then John, then Jane
               return <li> {cars.car} as something</li>
             })
           }
