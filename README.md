@@ -39,7 +39,11 @@ or
 GET /search?availability=unavailable
 
 ### implementing
-TODO hook
-TODO map, 
+hook,
+map, 
 reduce,
-filter in my fastify project
+filter 
+
+TODO TESTING
+
+in my fastify project
