@@ -31,8 +31,15 @@ Post re to http://localhost:3000/reserve
     "status":"unavailable"
 }
 
-## TODO
+## check availability
+GET /search?availability=available
 
-implement
-hook
-map, reduce, and filter in my fastify project
+or
+
+GET /search?availability=unavailable
+
+### implementing
+TODO hook
+TODO map, 
+reduce,
+filter in my fastify project
