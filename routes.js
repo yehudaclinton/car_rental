@@ -73,23 +73,44 @@ async function routes (fastify, options) {
   })
 
   const getAvailableCars = {
-    type: 'object',
-    required: ['status'],
-    properties: {
-      status: { type: 'string' },
-    },
+    /// params: avialability, car
+    // type: 'object',
+    // required: ['status'],
+    // properties: {
+    //   status: { type: 'string' },
+    // },
   }
   const gschema = {
     params: getAvailableCars,
   }
 //{ gschema },
   fastify.get('/search', async (request, reply) => {
-    // get all
-    const allcars = await collection.find().toArray()
-    console.log(request.params);
-    const result = allcars.filter(car => car.status == request.availability);
+
+    //console.log("request "+request.query.availability);
+    if(request.query.availability){
+
+      const allcars = await collection.find().toArray()
+
+      const result = allcars.filter(car => car.availability == request.query.availability);
 
     return result
+    }else if(request.query.car){
+      console.log("search");
+      // use reduce to count number of cars
+      const scars = await collection.distinct("car");
+      console.log(scars);
+
+      let instances = scars.reduce(function (allCars, car) {
+        if (car in allCars) {
+          allCars[car]++
+        }
+        else {
+          allCars[car] = 1
+        }
+        return allCars
+      }, {})
+      return instances;
+    }
   })
   
 fastify.setErrorHandler(function (error, request, reply) {
